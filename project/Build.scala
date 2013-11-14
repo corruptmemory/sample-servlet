@@ -26,15 +26,18 @@ object SampleSprayServlet extends Build {
     object V {
       val akkaVersion = "2.2.3"
       val sprayVersion = "1.2-RC3"
+      val logbackVersion = "1.0.13"
     }
 
     lazy val jetty = "org.mortbay.jetty" % "jetty" % "6.1.22" % "container"
     lazy val akkaActor = "com.typesafe.akka" %% "akka-actor" % V.akkaVersion
+    lazy val akkaSlf4j = "com.typesafe.akka" %% "akka-slf4j" % V.akkaVersion
+    lazy val logback   = "ch.qos.logback"    %   "logback-classic" % V.logbackVersion
     lazy val spray = Seq(
       "io.spray" % "spray-http" % V.sprayVersion,
       "io.spray" % "spray-util" % V.sprayVersion,
       "io.spray" % "spray-servlet" % V.sprayVersion
     )
-    lazy val sampleServlet = Seq(akkaActor,jetty) ++ spray
+    lazy val sampleServlet = Seq(akkaActor,akkaSlf4j,jetty,logback) ++ spray
   }
 }
